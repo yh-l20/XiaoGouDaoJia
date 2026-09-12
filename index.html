@@ -528,6 +528,8 @@ img{display:block}
 .ok-row:last-child{border-bottom:0}
 .ok-row span{color:var(--muted);flex:none}
 .ok-row b{color:var(--text);font-weight:600;text-align:right;word-break:break-all}
+.ok-id-copy{cursor:pointer;border-bottom:1px dashed rgba(65,217,166,.45);transition:color .2s}
+.ok-id-copy:hover{color:var(--accent)}
 .orders-card{max-width:560px}
 .orders-list{display:flex;flex-direction:column;gap:14px;max-height:56vh;overflow-y:auto;padding-right:4px}
 .order-item{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
@@ -1136,10 +1138,11 @@ img{display:block}
       <h3>预约提交成功</h3>
       <p class="ok-sub">订单已保存至本地（演示），提交 1 分钟后将自动模拟确认</p>
       <div class="ok-card">
-        <div class="ok-row"><span>订单号</span><b id="okId"></b></div>
+        <div class="ok-row"><span>订单号</span><b class="ok-id-copy" id="okId" title="点击复制订单号"></b></div>
         <div class="ok-row"><span>服务项目</span><b id="okSvc"></b></div>
         <div class="ok-row"><span>预约时间</span><b id="okTime"></b></div>
         <div class="ok-row"><span>上门地址</span><b id="okAddr"></b></div>
+        <div class="ok-row"><span>预估费用</span><b id="okPrice"></b></div>
       </div>
       <div class="modal-actions">
         <button class="btn btn-follow" id="okView">查看我的预约</button>
@@ -1256,9 +1259,16 @@ img{display:block}
   });
 
   /* 提交预约 → 假下单（模拟提交中 → 保存至 localStorage） */
+  var SVC_PRICE = {'中式推拿':'¥168 起','精油SPA':'¥198 起','肩颈放松':'¥128 起','足底反射':'¥158 起'};
   $('#btnSubmit').addEventListener('click', function(){
     var btn = this;
     if(btn.dataset.busy) return;
+    var addrRaw = $('.form-input').value.trim();
+    if(!addrRaw){
+      showToast('请先填写上门地址', 'err');
+      $('.form-input').focus();
+      return;
+    }
     btn.dataset.busy = '1';
     var orig = btn.innerHTML;
     btn.innerHTML = '提交中<span class="spin"></span>';
@@ -1270,18 +1280,29 @@ img{display:block}
       var svc = $('#svcChips .chip.on').textContent;
       var day = $('#dayChips .chip.on').textContent;
       var time = $('#timeChips .chip.on').textContent;
-      var addr = $('.form-input').value.trim() || '未填写（演示）';
-      var order = { id: genOrderId(), svc: svc, day: day, time: time, addr: addr, createdAt: Date.now() };
+      var order = { id: genOrderId(), svc: svc, day: day, time: time, addr: addrRaw, createdAt: Date.now() };
       var list = loadOrders(); list.unshift(order); saveOrders(list);
       $('#okId').textContent = order.id;
       $('#okSvc').textContent = svc;
       $('#okTime').textContent = day + ' ' + time;
-      $('#okAddr').textContent = addr;
+      $('#okAddr').textContent = addrRaw;
+      $('#okPrice').textContent = (SVC_PRICE[svc] || '到店确认');
       $('#bookForm').style.display = 'none';
       $('#bookSuccess').hidden = false;
       updateBadge();
       showToast('预约提交成功 · ' + order.id);
     }, 700);
+  });
+  /* 订单号一键复制 */
+  var okIdEl = $('#okId');
+  if(okIdEl) okIdEl.addEventListener('click', function(){
+    var txt = okIdEl.textContent;
+    if(!txt) return;
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(function(){ showToast('订单号已复制'); }, function(){});
+    } else {
+      showToast('复制失败，请手动复制：' + txt);
+    }
   });
   $('#okView').addEventListener('click', function(){ closeModal(); openOrders(); });
   $('#okDone').addEventListener('click', closeModal);
