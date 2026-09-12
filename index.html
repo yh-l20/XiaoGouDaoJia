@@ -547,6 +547,8 @@ img{display:block}
 .order-cancel:hover{border-color:#E06C5E;color:#E06C5E}
 .order-empty{text-align:center;padding:40px 20px;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:10px}
 .order-empty svg{width:32px;height:32px;color:rgba(65,217,166,.4)}
+.order-empty-cta{margin-top:6px;background:var(--accent);color:var(--ink);border:none;border-radius:999px;padding:10px 26px;font-weight:700;font-size:13.5px;cursor:pointer;letter-spacing:.05em;font-family:inherit;transition:transform .2s,box-shadow .2s}
+.order-empty-cta:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(65,217,166,.25)}
 @keyframes pop{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
 @keyframes badgePop{0%{transform:scale(1)}40%{transform:scale(1.5)}100%{transform:scale(1)}}
 .orders-badge.bump{animation:badgePop .4s cubic-bezier(.2,.8,.3,1.4)}
@@ -1280,7 +1282,7 @@ img{display:block}
       var svc = $('#svcChips .chip.on').textContent;
       var day = $('#dayChips .chip.on').textContent;
       var time = $('#timeChips .chip.on').textContent;
-      var order = { id: genOrderId(), svc: svc, day: day, time: time, addr: addrRaw, createdAt: Date.now() };
+      var order = { id: genOrderId(), svc: svc, day: day, time: time, addr: addrRaw, price: (SVC_PRICE[svc] || '到店确认'), createdAt: Date.now() };
       var list = loadOrders(); list.unshift(order); saveOrders(list);
       $('#okId').textContent = order.id;
       $('#okSvc').textContent = svc;
@@ -1493,7 +1495,7 @@ img{display:block}
     ordersList.innerHTML = '';
     if(!list.length){
       var e = document.createElement('div'); e.className = 'order-empty';
-      e.innerHTML = '<svg><use href="#i-cal"/></svg><span>还没有预约记录</span><span style="font-size:12px">点击「请Ta开时间」提交第一笔预约吧</span>';
+      e.innerHTML = '<svg><use href="#i-cal"/></svg><span>还没有预约记录</span><span style="font-size:12px">点击「请Ta开时间」提交第一笔预约吧</span><button class="order-empty-cta" id="emptyBookBtn">立即预约</button>';
       ordersList.appendChild(e); return;
     }
     list.forEach(function(o){
@@ -1505,7 +1507,7 @@ img{display:block}
       stEl.textContent = st === 'confirmed' ? '已确认' : '待确认';
       top.appendChild(idEl); top.appendChild(stEl);
       var body = document.createElement('div'); body.className = 'order-body';
-      [['服务项目', o.svc], ['预约时间', o.day + ' ' + o.time], ['上门地址', o.addr], ['下单时间', fmtTime(o.createdAt)]].forEach(function(kv){
+      [['服务项目', o.svc], ['预约时间', o.day + ' ' + o.time], ['上门地址', o.addr], ['预估费用', o.price || '到店确认'], ['下单时间', fmtTime(o.createdAt)]].forEach(function(kv){
         var c = document.createElement('div'); c.className = 'ob';
         var s = document.createElement('span'); s.textContent = kv[0];
         var b = document.createElement('div'); b.textContent = kv[1];
@@ -1524,6 +1526,8 @@ img{display:block}
     });
   }
   ordersList.addEventListener('click', function(e){
+    var eb = e.target.closest('#emptyBookBtn');
+    if(eb){ closeOrders(); openModal(); return; }
     var btn = e.target.closest('[data-cancel]');
     if(!btn) return;
     var id = btn.dataset.cancel;
@@ -1544,6 +1548,12 @@ img{display:block}
   }
   function openOrders(){ renderOrders(); scheduleOrdersRefresh(); ordersModal.classList.add('open'); document.body.style.overflow = 'hidden'; }
   function closeOrders(){ ordersModal.classList.remove('open'); document.body.style.overflow = ''; }
+  /* Escape 键统一关闭弹窗 */
+  document.addEventListener('keydown', function(e){
+    if(e.key !== 'Escape') return;
+    if(ordersModal.classList.contains('open')) closeOrders();
+    if(modal.classList.contains('open')) closeModal();
+  });
   $('#btnOrders').addEventListener('click', openOrders);
   var mOrders = $('#mOrders');
   if(mOrders) mOrders.addEventListener('click', openOrders);
