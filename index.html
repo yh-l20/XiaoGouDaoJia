@@ -123,7 +123,9 @@ img{display:block}
   position:sticky;top:0;z-index:50;
   background:rgba(13,18,15,.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
   border-bottom:1px solid var(--line-soft);
+  transition:box-shadow .3s,border-color .3s;
 }
+.nav.scrolled{box-shadow:0 14px 34px -20px rgba(0,0,0,.75);border-color:rgba(65,217,166,.14)}
 .nav-inner{display:flex;align-items:center;gap:36px;height:72px}
 .brand{display:flex;align-items:center;gap:12px;flex:none}
 .brand-mark{
@@ -345,7 +347,8 @@ img{display:block}
   radial-gradient(480px 160px at 90% 100%, rgba(65,217,166,.06), transparent 60%);}
 .trust-item{display:flex;align-items:center;gap:16px;padding:22px 30px;position:relative}
 .trust-item + .trust-item::before{content:"";position:absolute;left:0;top:24%;bottom:24%;width:1px;background:rgba(233,237,232,.08)}
-.trust-item .ic{
+.trust-item .ic{transition:transform .25s,color .25s}
+.trust-item:hover .ic{transform:scale(1.14);color:var(--accent)}
   width:46px;height:46px;border-radius:13px;flex:none;display:grid;place-items:center;
   background:rgba(65,217,166,.1);border:1px solid rgba(65,217,166,.28);color:var(--accent);
 }
@@ -1497,11 +1500,12 @@ img{display:block}
   }
 
   /* 回到顶部 + 顶部滚动进度条 */
-  var toTop = $('#toTop'), scrollBar = $('#scrollBar');
+  var toTop = $('#toTop'), scrollBar = $('#scrollBar'), navEl = document.querySelector('.nav');
   window.addEventListener('scroll', function(){
     var max = document.documentElement.scrollHeight - window.innerHeight;
     scrollBar.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
     toTop.classList.toggle('show', window.scrollY > 520);
+    if(navEl) navEl.classList.toggle('scrolled', window.scrollY > 8);
   }, {passive:true});
   toTop.addEventListener('click', function(){
     window.scrollTo({top:0, behavior:'smooth'});
