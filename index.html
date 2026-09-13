@@ -184,6 +184,12 @@ img{display:block}
   content:"";position:absolute;top:0;left:6%;right:6%;height:1px;z-index:2;
   background:linear-gradient(90deg,transparent,rgba(65,217,166,.55),transparent);
 }
+.hero-card::after{
+  content:"";position:absolute;top:0;left:-45%;width:35%;height:1px;z-index:2;
+  background:linear-gradient(90deg,transparent,rgba(65,217,166,.95),transparent);
+  animation:sheen 5.5s ease-in-out infinite;pointer-events:none;
+}
+@keyframes sheen{0%,55%{left:-45%}100%{left:110%}}
 /* 照片面板 */
 .photo-panel{position:relative;min-height:620px;background:var(--bg-2);overflow:hidden}
 .photo-track{position:absolute;inset:0;transition:transform .5s cubic-bezier(.6,.05,.2,1)}
@@ -552,6 +558,23 @@ img{display:block}
 .order-empty svg{width:32px;height:32px;color:rgba(65,217,166,.4)}
 .order-empty-cta{margin-top:6px;background:var(--accent);color:var(--ink);border:none;border-radius:999px;padding:10px 26px;font-weight:700;font-size:13.5px;cursor:pointer;letter-spacing:.05em;font-family:inherit;transition:transform .2s,box-shadow .2s}
 .order-empty-cta:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(65,217,166,.25)}
+/* 灯箱 */
+.lightbox{position:fixed;inset:0;z-index:120;background:rgba(5,8,6,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;animation:lbIn .25s ease}
+.lightbox[hidden]{display:none}
+.lightbox img{max-width:88vw;max-height:82vh;border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.6);object-fit:contain}
+.lb-btn{position:absolute;border:none;cursor:pointer;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:var(--text);width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:2}
+.lb-btn:hover{background:rgba(65,217,166,.16);border-color:var(--accent);color:var(--accent)}
+.lb-close{top:22px;right:22px}
+.lb-nav.prev{left:22px;top:50%;transform:translateY(-50%)}
+.lb-nav.next{right:22px;top:50%;transform:translateY(-50%)}
+.lb-meta{position:absolute;bottom:26px;left:0;right:0;text-align:center;color:var(--text-2);font-size:13px;letter-spacing:.05em;display:flex;align-items:center;justify-content:center;gap:14px}
+.lb-count{font-family:var(--mono);color:var(--accent);font-size:12px}
+@keyframes lbIn{from{opacity:0}to{opacity:1}}
+@media (max-width:640px){
+  .lb-nav.prev{left:10px}
+  .lb-nav.next{right:10px}
+  .lb-close{top:14px;right:14px}
+}
 @keyframes pop{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
 @keyframes badgePop{0%{transform:scale(1)}40%{transform:scale(1.5)}100%{transform:scale(1)}}
 .orders-badge.bump{animation:badgePop .4s cubic-bezier(.2,.8,.3,1.4)}
@@ -581,7 +604,7 @@ img{display:block}
   padding:9px 18px;border-radius:999px;font-size:13px;font-weight:600;transition:all .2s;
 }
 .chip:hover{border-color:rgba(65,217,166,.5);color:var(--accent)}
-.chip.on{border-color:var(--accent);background:rgba(65,217,166,.1);color:var(--accent)}
+.chip.on{border-color:var(--accent);background:rgba(65,217,166,.1);color:var(--accent);transform:scale(1.06)}
 .form-input{
   width:100%;border:1px solid var(--line);border-radius:12px;background:var(--bg);
   padding:13px 16px;font-size:14px;color:var(--text);font-family:inherit;outline:0;transition:border .2s;
@@ -1095,6 +1118,15 @@ img{display:block}
   <button class="m-book" id="mBook">请Ta开时间</button>
 </div>
 
+<!-- ===== 灯箱：照片大图查看 ===== -->
+<div class="lightbox" id="lightbox" hidden>
+  <button class="lb-btn lb-close" id="lbClose" aria-label="关闭"><svg width="18" height="18"><use href="#i-x"/></svg></button>
+  <button class="lb-btn lb-nav prev" id="lbPrev" aria-label="上一张"><svg width="22" height="22"><use href="#i-chev-l"/></svg></button>
+  <img id="lbImg" alt="技师李弈昊照片大图">
+  <button class="lb-btn lb-nav next" id="lbNext" aria-label="下一张"><svg width="22" height="22"><use href="#i-chev-r"/></svg></button>
+  <div class="lb-meta"><span id="lbCap"></span><span class="lb-count" id="lbCount"></span></div>
+</div>
+
 <!-- ===== 预约弹窗 ===== -->
 <div class="modal" id="bookModal" role="dialog" aria-modal="true" aria-label="预约技师">
   <div class="modal-mask" data-close></div>
@@ -1207,6 +1239,29 @@ img{display:block}
   }
   $('#photoPrev').addEventListener('click', function(){ showSlide(cur - 1); restartAuto(); });
   $('#photoNext').addEventListener('click', function(){ showSlide(cur + 1); restartAuto(); });
+
+  /* 灯箱：点击照片查看大图 */
+  var lightbox = $('#lightbox'), lbImg = $('#lbImg'), lbCap = $('#lbCap'), lbCount = $('#lbCount');
+  function lbShow(){
+    lbImg.src = slides[cur].querySelector('img').src;
+    lbImg.alt = slides[cur].querySelector('img').alt;
+    lbCap.textContent = slides[cur].querySelector('.photo-cap').textContent;
+    lbCount.textContent = (cur + 1) + ' / ' + tot;
+    lightbox.hidden = false;
+    document.body.style.overflow = 'hidden';
+  }
+  function lbHide(){ lightbox.hidden = true; document.body.style.overflow = ''; }
+  function lbStep(d){ showSlide(cur + d); restartAuto(); lbShow(); }
+  $$('.photo-panel').forEach(function(p){
+    p.addEventListener('click', function(e){
+      if(e.target.closest('.photo-nav') || e.target.closest('.photo-dots')) return;
+      lbShow();
+    });
+  });
+  $('#lbClose').addEventListener('click', lbHide);
+  $('#lbPrev').addEventListener('click', function(){ lbStep(-1); });
+  $('#lbNext').addEventListener('click', function(){ lbStep(1); });
+  lightbox.addEventListener('click', function(e){ if(e.target === lightbox) lbHide(); });
 
   /* 关注按钮 */
   var btnFollow = $('#btnFollow'), followed = false;
@@ -1554,6 +1609,7 @@ img{display:block}
   /* Escape 键统一关闭弹窗 */
   document.addEventListener('keydown', function(e){
     if(e.key !== 'Escape') return;
+    if(!lightbox.hidden){ lbHide(); return; }
     if(ordersModal.classList.contains('open')) closeOrders();
     if(modal.classList.contains('open')) closeModal();
   });
