@@ -12,6 +12,7 @@
 <meta property="og:image" content="https://aka.doubaocdn.com/s/TfgSNEBV8H">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2341D9A6'/%3E%3Ctext x='32' y='43' font-size='32' text-anchor='middle' fill='%230D120F' font-family='sans-serif' font-weight='700'%3E%E6%B4%A5%3C/text%3E%3C/svg%3E">
 <noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
+<link rel="preconnect" href="https://miaoda.feishu.cn">
 <link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
 <style>
 /* ============================================================
@@ -191,7 +192,7 @@ img{display:block}
 }
 @keyframes sheen{0%,55%{left:-45%}100%{left:110%}}
 /* 照片面板 */
-.photo-panel{position:relative;min-height:620px;background:var(--bg-2);overflow:hidden}
+.photo-panel{position:relative;min-height:620px;background:var(--bg-2);overflow:hidden;cursor:zoom-in}
 .photo-track{position:absolute;inset:0;transition:transform .5s cubic-bezier(.6,.05,.2,1)}
 .photo-slide{position:absolute;inset:0;opacity:0;transition:opacity .5s}
 .photo-slide.active{opacity:1}
@@ -546,7 +547,8 @@ img{display:block}
 .orders-list{display:flex;flex-direction:column;gap:14px;max-height:56vh;overflow-y:auto;padding-right:4px}
 .order-item{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
 .order-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
-.order-id{font-family:var(--mono);font-size:12.5px;color:var(--accent);font-weight:700;letter-spacing:.04em}
+.order-id{font-family:var(--mono);font-size:12.5px;color:var(--accent);font-weight:700;letter-spacing:.04em;cursor:pointer;border-bottom:1px dashed rgba(65,217,166,.35)}
+.order-id:hover{color:var(--text);border-color:var(--accent)}
 .st-chip{font-family:var(--mono);font-size:11px;font-weight:600;padding:3px 11px;border-radius:999px;letter-spacing:.1em}
 .st-ok{color:var(--accent);border:1px solid rgba(65,217,166,.45);background:rgba(65,217,166,.08)}
 .st-wait{color:var(--gold);border:1px solid rgba(226,185,111,.45);background:rgba(226,185,111,.08)}
@@ -969,7 +971,7 @@ img{display:block}
     <div class="review-grid reveal">
       <div class="score-card">
         <div class="score-main">
-          <div class="big">4.5<sup>分</sup></div>
+          <div class="big"><span id="bigScore">4.5</span><sup>分</sup></div>
           <div class="stars rating-stars" style="justify-content:center">
             <span class="stars-bg" style="display:inline-flex;gap:3px">
               <svg style="width:19px;height:19px"><use href="#i-star"/></svg><svg style="width:19px;height:19px"><use href="#i-star"/></svg><svg style="width:19px;height:19px"><use href="#i-star"/></svg><svg style="width:19px;height:19px"><use href="#i-star"/></svg><svg style="width:19px;height:19px"><use href="#i-star"/></svg>
@@ -1445,6 +1447,32 @@ img{display:block}
     requestAnimationFrame(frame);
   })();
 
+  /* 评分区大数字滚动（进入视口触发） */
+  (function(){
+    var el = $('#bigScore');
+    if(!el) return;
+    var target = parseFloat(el.textContent) || 0;
+    if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    function run(){
+      var dur = 900, t0 = null;
+      function frame(ts){
+        if(!t0) t0 = ts;
+        var p = Math.min((ts - t0) / dur, 1);
+        var ease = 1 - Math.pow(1 - p, 3);
+        el.textContent = (target * ease).toFixed(1);
+        if(p < 1) requestAnimationFrame(frame);
+        else el.textContent = target.toFixed(1);
+      }
+      requestAnimationFrame(frame);
+    }
+    if('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(es){
+        es.forEach(function(en){ if(en.isIntersecting){ io.disconnect(); run(); } });
+      }, {threshold:.4});
+      io.observe(el);
+    } else { run(); }
+  })();
+
   /* 图片加载失败兜底（避免破图） */
   document.querySelectorAll('img').forEach(function(img){
     img.addEventListener('error', function(){
@@ -1564,7 +1592,7 @@ img{display:block}
       var st = orderStatus(o);
       var it = document.createElement('div'); it.className = 'order-item';
       var top = document.createElement('div'); top.className = 'order-top';
-      var idEl = document.createElement('span'); idEl.className = 'order-id'; idEl.textContent = o.id;
+      var idEl = document.createElement('span'); idEl.className = 'order-id'; idEl.textContent = o.id; idEl.title = '点击复制订单号';
       var stEl = document.createElement('span'); stEl.className = 'st-chip ' + (st === 'confirmed' ? 'st-ok' : 'st-wait');
       stEl.textContent = st === 'confirmed' ? '已确认' : '待确认';
       top.appendChild(idEl); top.appendChild(stEl);
@@ -1590,6 +1618,16 @@ img{display:block}
   ordersList.addEventListener('click', function(e){
     var eb = e.target.closest('#emptyBookBtn');
     if(eb){ closeOrders(); openModal(); return; }
+    var oid = e.target.closest('.order-id');
+    if(oid){
+      var t = oid.textContent;
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(t).then(function(){ showToast('订单号已复制'); }, function(){});
+      } else {
+        showToast('复制失败，请手动复制：' + t);
+      }
+      return;
+    }
     var btn = e.target.closest('[data-cancel]');
     if(!btn) return;
     var id = btn.dataset.cancel;
