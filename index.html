@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -441,13 +441,16 @@ img{display:block}
   content:"";position:absolute;top:40px;left:10%;right:10%;height:1px;
   background:repeating-linear-gradient(90deg, rgba(233,237,232,.14) 0 10px, transparent 10px 20px);
 }
-.step{position:relative;text-align:center;padding:0 10px}
+.step{position:relative;text-align:center;padding:0 10px;transition:transform .25s ease}
+.step:hover{transform:translateY(-5px)}
 .step-no{
   width:52px;height:52px;margin:0 auto 18px;border-radius:50%;
   background:var(--surface);border:1px solid rgba(65,217,166,.45);color:var(--accent);
   font-family:var(--mono);font-weight:800;font-size:18px;display:grid;place-items:center;
   position:relative;z-index:1;box-shadow:0 10px 26px -14px rgba(65,217,166,.5);
+  transition:background .25s,box-shadow .25s;
 }
+.step:hover .step-no{background:rgba(65,217,166,.08);box-shadow:0 14px 30px -12px rgba(65,217,166,.6)}
 .step h3{font-family:var(--sans);font-weight:700;font-size:16.5px;color:var(--text);letter-spacing:.04em}
 .step p{font-size:12.5px;color:var(--muted);margin-top:6px;line-height:1.65}
 
@@ -579,6 +582,7 @@ img{display:block}
 @keyframes badgePop{0%{transform:scale(1)}40%{transform:scale(1.5)}100%{transform:scale(1)}}
 .orders-badge.bump{animation:badgePop .4s cubic-bezier(.2,.8,.3,1.4)}
 .order-item{transition:all .25s}
+.order-item:hover{border-color:rgba(65,217,166,.35);transform:translateY(-2px)}
 .order-item:hover{border-color:rgba(65,217,166,.4);transform:translateY(-2px);box-shadow:var(--shadow-sm)}
 
 /* ---------- 弹窗 ---------- */
@@ -771,23 +775,23 @@ img{display:block}
       <div class="photo-panel">
         <div class="photo-track">
           <div class="photo-slide active">
-            <img src="https://aka.doubaocdn.com/s/TfgSNEBV8H" alt="技师李弈昊生活照：夜晚怀抱猫咪" fetchpriority="high">
+            <img decoding="async" src="https://aka.doubaocdn.com/s/TfgSNEBV8H" alt="技师李弈昊生活照：夜晚怀抱猫咪" fetchpriority="high">
             <span class="photo-cap">生活日常 · 怀抱爱猫</span>
           </div>
           <div class="photo-slide">
-            <img src="https://aka.doubaocdn.com/s/Anhq3xM7Ge" alt="技师李弈昊行业会议签名墙前留影">
+            <img decoding="async" src="https://aka.doubaocdn.com/s/Anhq3xM7Ge" alt="技师李弈昊行业会议签名墙前留影">
             <span class="photo-cap">行业会议 · 签名墙留影</span>
           </div>
           <div class="photo-slide">
-            <img src="https://aka.doubaocdn.com/s/1BnSVVXiI8" alt="技师李弈昊的拍立得照片收藏">
+            <img decoding="async" src="https://aka.doubaocdn.com/s/1BnSVVXiI8" alt="技师李弈昊的拍立得照片收藏">
             <span class="photo-cap">拍立得 · 生活收藏</span>
           </div>
           <div class="photo-slide">
-            <img src="https://aka.doubaocdn.com/s/wTu7rY6ZNW" alt="技师李弈昊办公室日常抓拍">
+            <img decoding="async" src="https://aka.doubaocdn.com/s/wTu7rY6ZNW" alt="技师李弈昊办公室日常抓拍">
             <span class="photo-cap">工作日常 · 休闲一刻</span>
           </div>
           <div class="photo-slide">
-            <img src="https://aka.doubaocdn.com/s/XxckJWmqZD" alt="技师李弈昊健身身材照">
+            <img decoding="async" src="https://aka.doubaocdn.com/s/XxckJWmqZD" alt="技师李弈昊健身身材照">
             <span class="photo-cap">健身日常 · 保持状态</span>
           </div>
         </div>
@@ -1031,7 +1035,7 @@ img{display:block}
     <div class="sim-grid reveal">
       <a class="sim-card reveal" href="#similar">
         <div class="sim-photo">
-          <img src="https://aka.doubaocdn.com/s/LTqZtoaMUG" alt="中式推拿技师周师傅" loading="lazy">
+          <img decoding="async" src="https://aka.doubaocdn.com/s/LTqZtoaMUG" alt="中式推拿技师周师傅" loading="lazy">
           <span class="sim-tag">中式推拿</span>
         </div>
         <div class="sim-body">
@@ -1045,7 +1049,7 @@ img{display:block}
       </a>
       <a class="sim-card reveal" href="#similar">
         <div class="sim-photo">
-          <img src="https://aka.doubaocdn.com/s/ZWEp4VVEdE" alt="精油SPA理疗师阿杰" loading="lazy">
+          <img decoding="async" src="https://aka.doubaocdn.com/s/ZWEp4VVEdE" alt="精油SPA理疗师阿杰" loading="lazy">
           <span class="sim-tag">精油SPA</span>
         </div>
         <div class="sim-body">
@@ -1059,7 +1063,7 @@ img{display:block}
       </a>
       <a class="sim-card reveal" href="#similar">
         <div class="sim-photo">
-          <img src="https://aka.doubaocdn.com/s/8VcUcMEAKf" alt="肩颈理疗师小雨" loading="lazy">
+          <img decoding="async" src="https://aka.doubaocdn.com/s/8VcUcMEAKf" alt="肩颈理疗师小雨" loading="lazy">
           <span class="sim-tag">肩颈理疗</span>
         </div>
         <div class="sim-body">
@@ -1122,7 +1126,7 @@ img{display:block}
 <div class="lightbox" id="lightbox" hidden>
   <button class="lb-btn lb-close" id="lbClose" aria-label="关闭"><svg width="18" height="18"><use href="#i-x"/></svg></button>
   <button class="lb-btn lb-nav prev" id="lbPrev" aria-label="上一张"><svg width="22" height="22"><use href="#i-chev-l"/></svg></button>
-  <img id="lbImg" alt="技师李弈昊照片大图">
+  <img decoding="async" id="lbImg" alt="技师李弈昊照片大图">
   <button class="lb-btn lb-nav next" id="lbNext" aria-label="下一张"><svg width="22" height="22"><use href="#i-chev-r"/></svg></button>
   <div class="lb-meta"><span id="lbCap"></span><span class="lb-count" id="lbCount"></span></div>
 </div>
@@ -1133,7 +1137,7 @@ img{display:block}
   <div class="modal-card">
     <div class="modal-head">
       <div class="who">
-        <img src="https://aka.doubaocdn.com/s/TfgSNEBV8H" alt="李弈昊">
+        <img decoding="async" src="https://aka.doubaocdn.com/s/TfgSNEBV8H" alt="李弈昊">
         <div>
           <div class="n">预约 · 李弈昊</div>
           <div class="m">中式推拿 / 精油SPA · 距您 1.8km</div>
