@@ -361,6 +361,7 @@ img{display:block}
 }
 .trust-item .ic svg{width:23px;height:23px}
 .trust-item .t{font-size:15px;font-weight:700;letter-spacing:.04em;color:var(--text)}
+.trust-item .t .hl{color:var(--accent);font-variant-numeric:tabular-nums}
 .trust-item .d{font-size:12px;color:var(--muted);margin-top:2px;letter-spacing:.03em}
 
 /* ---------- 资质认证 ---------- */
@@ -612,7 +613,8 @@ img{display:block}
 }
 .modal-head{display:flex;align-items:center;gap:14px;margin-bottom:24px}
 .modal-head .who{display:flex;align-items:center;gap:12px;flex:1}
-.modal-head img{width:52px;height:52px;border-radius:12px;object-fit:cover;border:1px solid var(--line)}
+.modal-head img{width:52px;height:52px;border-radius:12px;object-fit:cover;border:1px solid var(--line);transition:transform .25s}
+.modal-head img:hover{transform:scale(1.06)}
 .modal-head .n{font-weight:800;font-size:20px;color:var(--text);letter-spacing:.02em}
 .modal-head .m{font-size:12px;color:var(--muted);margin-top:2px;font-family:var(--mono)}
 .modal-close{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--muted);display:grid;place-items:center;transition:all .2s}
@@ -901,7 +903,7 @@ img{display:block}
       </div>
       <div class="trust-item">
         <span class="ic"><svg><use href="#i-shield-check"/></svg></span>
-        <div><div class="t">15 万安全保障</div><div class="d">人身 · 财产 · 服务三重保障</div></div>
+        <div><div class="t"><b class="hl">15万</b> 安全保障</div><div class="d">人身 · 财产 · 服务三重保障</div></div>
       </div>
       <div class="trust-item">
         <span class="ic"><svg><use href="#i-check"/></svg></span>
