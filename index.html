@@ -182,7 +182,9 @@ img{display:block}
   display:grid;grid-template-columns:440px 1fr;gap:0;
   background:var(--surface);border:1px solid var(--line-soft);border-radius:20px;
   box-shadow:var(--shadow);overflow:hidden;position:relative;
+  animation:fadeUp .5s ease;
 }
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 .hero-card::before{
   content:"";position:absolute;top:0;left:6%;right:6%;height:1px;z-index:2;
   background:linear-gradient(90deg,transparent,rgba(65,217,166,.55),transparent);
@@ -424,7 +426,10 @@ img{display:block}
 .score-row .top .k{color:var(--muted);letter-spacing:.12em;font-family:var(--mono)}
 .score-row .top .v{color:var(--accent);font-weight:700;font-variant-numeric:tabular-nums;font-family:var(--mono)}
 .bar{height:6px;border-radius:999px;background:rgba(233,237,232,.08);overflow:hidden}
-.bar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--accent-2),var(--accent));transition:width 1.1s cubic-bezier(.2,.7,.3,1)}
+.bar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--accent-2),var(--accent));transition:width 1.1s cubic-bezier(.2,.7,.3,1),filter .2s}
+.score-row{transition:transform .2s}
+.score-row:hover{transform:translateX(3px)}
+.score-row:hover .bar i{filter:brightness(1.18)}
 .review-list{display:flex;flex-direction:column;gap:18px}
 .review-empty{
   flex:1;background:var(--surface);border:1px dashed rgba(233,237,232,.16);border-radius:var(--radius);
