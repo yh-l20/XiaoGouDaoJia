@@ -247,6 +247,7 @@ img{display:block}
 .photo-nav.prev{left:14px}
 .photo-nav.next{right:14px}
 .photo-ai{position:absolute;left:18px;bottom:86px;z-index:3;display:flex;gap:8px}
+.photo-ai b{color:var(--accent);font-weight:800;font-variant-numeric:tabular-nums}
 .photo-ai span{
   display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;font-weight:500;
   color:var(--text-2);background:rgba(8,12,10,.62);backdrop-filter:blur(8px);
@@ -583,7 +584,7 @@ img{display:block}
 /* 灯箱 */
 .lightbox{position:fixed;inset:0;z-index:120;background:rgba(5,8,6,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;animation:lbIn .25s ease}
 .lightbox[hidden]{display:none}
-.lightbox img{max-width:88vw;max-height:82vh;border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.6);object-fit:contain}
+.lightbox img{max-width:88vw;max-height:82vh;border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.6);object-fit:contain;background:linear-gradient(110deg,rgba(233,237,232,.06) 8%,rgba(233,237,232,.13) 18%,rgba(233,237,232,.06) 33%);background-size:200% 100%;animation:shimmer 1.4s linear infinite}
 .lb-btn{position:absolute;border:none;cursor:pointer;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:var(--text);width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:2}
 .lb-btn:hover{background:rgba(65,217,166,.16);border-color:var(--accent);color:var(--accent)}
 .lb-close{top:22px;right:22px}
@@ -821,7 +822,7 @@ img{display:block}
         <button class="photo-nav prev" id="photoPrev" aria-label="上一张"><svg width="16" height="16"><use href="#i-chev-l"/></svg></button>
         <button class="photo-nav next" id="photoNext" aria-label="下一张"><svg width="16" height="16"><use href="#i-chev-r"/></svg></button>
         <div class="photo-ai">
-          <span><svg class="ok" width="13" height="13"><use href="#i-check"/></svg>人脸对比 95%相似</span>
+          <span><svg class="ok" width="13" height="13"><use href="#i-check"/></svg>人脸对比 <b>95%</b>相似</span>
           <span>AI还原</span>
         </div>
         <span class="photo-time">上传时间 6月前</span>
