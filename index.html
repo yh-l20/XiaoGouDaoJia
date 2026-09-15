@@ -276,7 +276,9 @@ img{display:block}
   font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.2em;
   color:var(--accent);background:rgba(8,12,10,.72);backdrop-filter:blur(8px);
   border:1px solid rgba(65,217,166,.45);padding:6px 13px;border-radius:999px;
+  transition:box-shadow .25s,color .25s;
 }
+.vf-chip:hover{box-shadow:0 0 18px rgba(65,217,166,.35);color:var(--text)}
 /* 信息面板 */
 .info-panel{padding:40px 44px 36px;display:flex;flex-direction:column;gap:22px}
 .name-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
@@ -398,7 +400,7 @@ img{display:block}
   padding:28px 24px 22px;transition:all .25s;position:relative;cursor:pointer;outline:none;
 }
 .svc-card:focus-visible{box-shadow:0 0 0 2px var(--accent);border-color:rgba(65,217,166,.6)}
-.svc-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-sm);border-color:rgba(65,217,166,.35)}
+.svc-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-sm),0 14px 34px -16px rgba(65,217,166,.22);border-color:rgba(65,217,166,.35)}
 .svc-ic{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);color:var(--text-2);display:grid;place-items:center;margin-bottom:16px;transition:all .25s}
 .svc-card:hover .svc-ic{background:rgba(65,217,166,.12);color:var(--accent);border-color:rgba(65,217,166,.45);transform:translateY(-3px)}
 .svc-ic svg{width:23px;height:23px}
