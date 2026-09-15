@@ -231,6 +231,8 @@ img{display:block}
   font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;padding:6px 12px;border-radius:999px;
   font-variant-numeric:tabular-nums;border:1px solid rgba(233,237,232,.12);
 }
+.empty-float{width:44px;height:44px;color:var(--accent);opacity:.85;animation:floatY 2.6s ease-in-out infinite}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 /* 照片圆点指示器 */
 .photo-dots{
   position:absolute;left:50%;bottom:20px;transform:translateX(-50%);z-index:3;
@@ -1610,7 +1612,7 @@ img{display:block}
     ordersList.innerHTML = '';
     if(!list.length){
       var e = document.createElement('div'); e.className = 'order-empty';
-      e.innerHTML = '<svg><use href="#i-cal"/></svg><span>还没有预约记录</span><span style="font-size:12px">点击「请Ta开时间」提交第一笔预约吧</span><button class="order-empty-cta" id="emptyBookBtn">立即预约</button>';
+      e.innerHTML = '<svg class="empty-float"><use href="#i-cal"/></svg><span>还没有预约记录</span><span style="font-size:12px">点击「请Ta开时间」提交第一笔预约吧</span><button class="order-empty-cta" id="emptyBookBtn">立即预约</button>';
       ordersList.appendChild(e); return;
     }
     list.forEach(function(o){
