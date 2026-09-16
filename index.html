@@ -287,7 +287,8 @@ img{display:block}
   display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;
   padding:4px 12px;border-radius:999px;letter-spacing:.06em;font-family:var(--mono);
 }
-.tag-new{border:1px solid rgba(65,217,166,.45);color:var(--accent);background:rgba(65,217,166,.08)}
+.tag-new{border:1px solid rgba(65,217,166,.45);color:var(--accent);background:rgba(65,217,166,.08);transition:background .2s,border-color .2s}
+.tag-new:hover{background:rgba(65,217,166,.16);border-color:var(--accent)}
 .tag-book{background:rgba(65,217,166,.14);color:var(--accent);border:1px solid rgba(65,217,166,.4);animation:tagPulse 2.4s ease-in-out infinite}
 @keyframes tagPulse{0%,100%{box-shadow:0 0 0 0 rgba(65,217,166,.35)}50%{box-shadow:0 0 0 5px rgba(65,217,166,0)}}
 .tag-plat{border:1px solid var(--line);color:var(--muted)}
@@ -592,6 +593,7 @@ img{display:block}
 .order-empty{text-align:center;padding:40px 20px;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:10px}
 .order-empty svg{width:32px;height:32px;color:rgba(65,217,166,.4)}
 .order-empty-cta{margin-top:6px;background:var(--accent);color:var(--ink);border:none;border-radius:999px;padding:10px 26px;font-weight:700;font-size:13.5px;cursor:pointer;letter-spacing:.05em;font-family:inherit;transition:transform .2s,box-shadow .2s}
+.order-empty-cta:hover{transform:translateY(-2px);box-shadow:0 12px 26px -12px rgba(65,217,166,.7)}
 .order-empty-cta:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(65,217,166,.25)}
 /* 灯箱 */
 .lightbox{position:fixed;inset:0;z-index:120;background:rgba(5,8,6,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;animation:lbIn .25s ease}
