@@ -383,7 +383,8 @@ img{display:block}
   background:radial-gradient(circle at 50% 50%, rgba(65,217,166,.1), transparent 70%);
 }
 .cert-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-sm);border-color:rgba(65,217,166,.35)}
-.cert-ic{width:52px;height:52px;border-radius:14px;background:rgba(65,217,166,.1);color:var(--accent);display:grid;place-items:center;margin-bottom:18px;border:1px solid rgba(65,217,166,.22)}
+.cert-ic{width:52px;height:52px;border-radius:14px;background:rgba(65,217,166,.1);color:var(--accent);display:grid;place-items:center;margin-bottom:18px;border:1px solid rgba(65,217,166,.22);transition:transform .25s,border-color .25s,box-shadow .25s}
+.cert-card:hover .cert-ic{transform:translateY(-2px);border-color:rgba(65,217,166,.5);box-shadow:0 8px 20px -10px rgba(65,217,166,.5)}
 .cert-ic svg{width:26px;height:26px}
 .cert-card h3{font-family:var(--sans);font-weight:700;font-size:19px;color:var(--text);letter-spacing:.02em}
 .cert-card p{font-size:13px;color:var(--muted);margin-top:7px;line-height:1.7}
@@ -501,7 +502,8 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 .sim-card:hover .sim-tag{background:rgba(65,217,166,.16);box-shadow:0 0 14px rgba(65,217,166,.25)}
 }
 .sim-body{padding:18px 20px 20px}
-.sim-name{display:flex;align-items:center;gap:8px;font-weight:700;font-size:18px;color:var(--text);letter-spacing:.02em}
+.sim-name{display:flex;align-items:center;gap:8px;font-weight:700;font-size:18px;color:var(--text);letter-spacing:.02em;transition:color .2s}
+.sim-card:hover .sim-name{color:var(--accent)}
 .sim-badge{font-size:10px;font-family:var(--mono);font-weight:600;color:var(--accent);border:1px solid rgba(65,217,166,.4);background:rgba(65,217,166,.07);padding:2px 8px;border-radius:999px;letter-spacing:.12em}
 .sim-meta{font-size:12.5px;color:var(--muted);margin-top:6px;letter-spacing:.03em;font-family:var(--mono)}
 .sim-foot{display:flex;align-items:center;justify-content:space-between;margin-top:14px;padding-top:14px;border-top:1px dashed rgba(233,237,232,.12)}
