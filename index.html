@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>李弈昊 · 中式推拿技师 - 津约到家</title>
-<meta name="description" content="津约到家平台技师李弈昊主页：中式推拿、精油SPA等上门健康服务，平台可信认证，大家保险承保，安心到家。">
+<title>李弈昊 · 中式推拿技师 - 小狗到家</title>
+<meta name="description" content="小狗到家平台技师李弈昊主页：中式推拿、精油SPA、小狗撒娇等上门服务，平台可信认证，大家保险承保，安心到家。">
 <meta name="theme-color" content="#0D120F">
 <meta property="og:type" content="website">
-<meta property="og:title" content="李弈昊 · 中式推拿技师 - 津约到家">
-<meta property="og:description" content="津约到家平台技师李弈昊主页：中式推拿、精油SPA等上门健康服务，平台可信认证，大家保险承保，安心到家。">
+<meta property="og:title" content="李弈昊 · 中式推拿技师 - 小狗到家">
+<meta property="og:description" content="小狗到家平台技师李弈昊主页：中式推拿、精油SPA、小狗撒娇等上门服务，平台可信认证，大家保险承保，安心到家。">
 <meta property="og:image" content="https://aka.doubaocdn.com/s/TfgSNEBV8H">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2341D9A6'/%3E%3Ctext x='32' y='43' font-size='32' text-anchor='middle' fill='%230D120F' font-family='sans-serif' font-weight='700'%3E%E6%B4%A5%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2341D9A6'/%3E%3Ctext x='32' y='43' font-size='32' text-anchor='middle' fill='%230D120F' font-family='sans-serif' font-weight='700'%3E%E7%8B%97%3C/text%3E%3C/svg%3E">
 <noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
 <link rel="preconnect" href="https://miaoda.feishu.cn">
 <link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
 <style>
 /* ============================================================
-   津约到家 · 技师主页（静态演示版 · v3 现代风）
+   小狗到家 · 技师主页（静态演示版 · 现代风）
    视觉方向：深色炭底 × 薄荷青强调 × Manrope 无衬线
    签名元素：AI 扫描验证 HUD（扫描线 + VERIFIED 芯片）
    ============================================================ */
@@ -137,6 +137,7 @@ img{display:block}
   transition:transform .25s,box-shadow .25s;
 }
 .brand-mark:hover{transform:scale(1.06) rotate(-3deg);box-shadow:0 14px 30px -10px rgba(65,217,166,.7)}
+.brand-mark svg{width:22px;height:22px;filter:drop-shadow(0 2px 4px rgba(13,18,15,.35))}
 .brand-mark::after{content:"";position:absolute;inset:4px;border:1px solid rgba(13,18,15,.3);border-radius:8px}
 .brand-name{font-weight:800;font-size:20px;color:var(--text);letter-spacing:.04em;line-height:1.15}
 .brand-name small{display:block;font-family:var(--mono);font-weight:500;font-size:9.5px;letter-spacing:.34em;color:var(--accent)}
@@ -397,7 +398,7 @@ img{display:block}
 
 /* ---------- 服务项目 ---------- */
 .services{padding:76px 0 8px}
-.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .svc-card{
   background:var(--surface);border:1px solid var(--line-soft);border-radius:var(--radius);
   padding:28px 24px 22px;transition:all .25s;position:relative;cursor:pointer;outline:none;
@@ -406,6 +407,10 @@ img{display:block}
 .svc-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-sm),0 14px 34px -16px rgba(65,217,166,.22);border-color:rgba(65,217,166,.35)}
 .svc-ic{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);color:var(--text-2);display:grid;place-items:center;margin-bottom:16px;transition:all .25s}
 .svc-card:hover .svc-ic{background:rgba(65,217,166,.12);color:var(--accent);border-color:rgba(65,217,166,.45);transform:translateY(-3px)}
+.svc-card[data-svc="小狗撒娇"]{border-color:rgba(226,185,111,.32)}
+.svc-card[data-svc="小狗撒娇"]:hover{border-color:rgba(226,185,111,.6);box-shadow:var(--shadow-sm),0 14px 34px -16px rgba(226,185,111,.4)}
+.svc-card[data-svc="小狗撒娇"] .svc-ic{background:rgba(226,185,111,.1);color:var(--gold);border-color:rgba(226,185,111,.3)}
+.svc-card[data-svc="小狗撒娇"]:hover .svc-ic{background:rgba(226,185,111,.16);color:var(--gold);border-color:rgba(226,185,111,.55);transform:translateY(-3px)}
 .svc-ic svg{width:23px;height:23px}
 .svc-card h3{font-family:var(--sans);font-weight:700;font-size:18px;color:var(--text);letter-spacing:.02em}
 .svc-card p{font-size:12.5px;color:var(--muted);margin-top:6px;line-height:1.6}
@@ -773,6 +778,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
     <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5M12 7.8v.4"/></symbol>
     <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></symbol>
     <symbol id="i-star" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2.6l2.9 5.9 6.5 1-4.7 4.5 1.1 6.5L12 17.5l-5.8 3 1.1-6.5L2.6 9.5l6.5-1L12 2.6Z"/></symbol>
+    <symbol id="i-paw" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 13.6c-2.5 0-4.5-1.8-4.5-4s2-4 4.5-4 4.5 1.8 4.5 4-2 4-4.5 4Z"/><ellipse cx="5.2" cy="10.8" rx="1.7" ry="2.1"/><ellipse cx="18.8" cy="10.8" rx="1.7" ry="2.1"/><ellipse cx="7.6" cy="5.9" rx="1.45" ry="1.9"/><ellipse cx="16.4" cy="5.9" rx="1.45" ry="1.9"/></symbol>
   </defs>
 </svg>
 
@@ -780,8 +786,8 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 <header class="nav">
   <div class="wrap nav-inner">
     <a class="brand" href="#top">
-      <span class="brand-mark">津</span>
-      <span class="brand-name">津约到家<small>安心到家 · 健康服务</small></span>
+      <span class="brand-mark"><svg aria-hidden="true"><use href="#i-paw"/></svg></span>
+      <span class="brand-name">小狗到家<small>贴心服务 · 快乐到家</small></span>
     </a>
     <nav class="nav-links">
       <a href="#top">首页</a>
@@ -866,7 +872,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
           <span class="verified-badge" title="平台可信认证"><svg width="15" height="15"><use href="#i-check"/></svg></span>
           <span class="tag tag-new">新人</span>
           <span class="tag tag-book">今日可约</span>
-          <span class="tag tag-plat">津约到家</span>
+          <span class="tag tag-plat">小狗到家</span>
         </div>
         <div class="meta-line">
           <span>ID <b>020315</b></span><span class="sep">·</span>
@@ -1002,6 +1008,12 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
         <p>足底穴位反射调理，促进循环，改善睡眠质量。</p>
         <div class="svc-foot"><span class="svc-tag">上门服务</span><span class="svc-price">¥158 起<small> · 60分钟</small></span></div>
       </div>
+      <div class="svc-card" data-svc="小狗撒娇" role="button" tabindex="0" aria-label="预约小狗撒娇">
+        <div class="svc-ic"><svg><use href="#i-paw"/></svg></div>
+        <h3>小狗撒娇</h3>
+        <p>毛茸茸的快乐上门，撒娇陪玩互动，治愈一整天疲惫。</p>
+        <div class="svc-foot"><span class="svc-tag">快乐陪伴</span><span class="svc-price">¥66 起<small> · 30分钟</small></span></div>
+      </div>
     </div>
     <p class="svc-note"><svg><use href="#i-info"/></svg>具体时长与价格请与技师沟通确认，平台明码标价，无隐形消费。</p>
   </section>
@@ -1131,10 +1143,10 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
   <div class="wrap footer-inner">
     <div>
       <a class="brand" href="#top">
-        <span class="brand-mark">津</span>
-        <span class="brand-name">津约到家<small>安心到家 · 健康服务</small></span>
+        <span class="brand-mark"><svg aria-hidden="true"><use href="#i-paw"/></svg></span>
+        <span class="brand-name">小狗到家<small>贴心服务 · 快乐到家</small></span>
       </a>
-      <p class="footer-about">津约到家是一家专注上门健康服务的平台，严格审核每一位服务技师，提供推拿、SPA 等绿色正规到家服务。放心约，满意付。</p>
+      <p class="footer-about">小狗到家是一家专注上门服务的平台，严格审核每一位服务技师，提供推拿、SPA、小狗撒娇等贴心到家服务。放心约，满意付。</p>
     </div>
     <div>
       <h4>平台导航</h4>
@@ -1156,7 +1168,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
     </div>
   </div>
   <div class="wrap footer-bottom">
-    <span>© <span id="yearNow"></span> 津约到家 · 本页面为静态设计演示，数据仅供参考</span>
+    <span>© <span id="yearNow"></span> 小狗到家 · 本页面为静态设计演示，数据仅供参考</span>
     <span>京ICP备XXXXXXXX号 · 服务监督 400-000-0000</span>
   </div>
 </footer>
@@ -1370,7 +1382,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
   });
 
   /* 提交预约 → 假下单（模拟提交中 → 保存至 localStorage） */
-  var SVC_PRICE = {'中式推拿':'¥168 起','精油SPA':'¥198 起','肩颈放松':'¥128 起','足底反射':'¥158 起'};
+  var SVC_PRICE = {'中式推拿':'¥168 起','精油SPA':'¥198 起','肩颈放松':'¥128 起','足底反射':'¥158 起','小狗撒娇':'¥66 起'};
   $('#btnSubmit').addEventListener('click', function(){
     var btn = this;
     if(btn.dataset.busy) return;
@@ -1606,7 +1618,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
   }
   function genOrderId(){
     var d = new Date(), p = function(n){ return ('0' + n).slice(-2); };
-    return 'JY' + d.getFullYear() + p(d.getMonth()+1) + p(d.getDate()) + Math.floor(1000 + Math.random()*9000);
+    return 'XG' + d.getFullYear() + p(d.getMonth()+1) + p(d.getDate()) + Math.floor(1000 + Math.random()*9000);
   }
   function orderStatus(o){ return (Date.now() - o.createdAt) > 60000 ? 'confirmed' : 'pending'; }
   function fmtTime(ts){
