@@ -592,6 +592,8 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 .order-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;padding-top:12px;border-top:1px dashed rgba(233,237,232,.1)}
 .order-time{font-family:var(--mono);font-size:11px;color:var(--muted)}
 .order-cancel{background:transparent;border:1px solid var(--line);color:var(--muted);font-size:12px;font-weight:600;padding:6px 16px;border-radius:999px;transition:all .2s}
+.order-cancel:hover{border-color:rgba(224,108,94,.55);color:#E06C5E;background:rgba(224,108,94,.08)}
+.order-cancel:active{transform:scale(.95)}
 .order-cancel:hover{border-color:#E06C5E;color:#E06C5E}
 .order-empty{text-align:center;padding:40px 20px;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:10px}
 .order-empty svg{width:32px;height:32px;color:rgba(65,217,166,.4)}
@@ -648,6 +650,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 }
 .chip:hover{border-color:rgba(65,217,166,.5);color:var(--accent)}
 .chip.on{border-color:var(--accent);background:rgba(65,217,166,.1);color:var(--accent);transform:scale(1.06)}
+.chip:active{transform:scale(.95)}
 .form-input{
   width:100%;border:1px solid var(--line);border-radius:12px;background:var(--bg);
   padding:13px 16px;font-size:14px;color:var(--text);font-family:inherit;outline:0;transition:border .2s;
