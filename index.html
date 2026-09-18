@@ -1011,6 +1011,24 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
         <p>毛茸茸的快乐上门，汪汪撒娇陪玩互动，治愈一整天疲惫。</p>
         <div class="svc-foot"><span class="svc-tag">快乐陪伴</span><span class="svc-price">¥66 起<small> · 30分钟</small></span></div>
       </div>
+      <div class="svc-card" data-svc="汪汪捶背" role="button" tabindex="0" aria-label="预约汪汪捶背">
+        <div class="svc-ic"><svg><use href="#i-wand"/></svg></div>
+        <h3>汪汪捶背</h3>
+        <p>小狗双爪节奏捶打，赶走肩背酸痛，浑身轻松。</p>
+        <div class="svc-foot"><span class="svc-tag">汪汪上门</span><span class="svc-price">¥88 起<small> · 45分钟</small></span></div>
+      </div>
+      <div class="svc-card" data-svc="撸狗解压" role="button" tabindex="0" aria-label="预约撸狗解压">
+        <div class="svc-ic"><svg><use href="#i-heart"/></svg></div>
+        <h3>撸狗解压</h3>
+        <p>毛茸茸贴贴撸撸，烦恼清零，快乐加满，汪~</p>
+        <div class="svc-foot"><span class="svc-tag">快乐陪伴</span><span class="svc-price">¥58 起<small> · 30分钟</small></span></div>
+      </div>
+      <div class="svc-card" data-svc="狗爪热敷" role="button" tabindex="0" aria-label="预约狗爪热敷">
+        <div class="svc-ic"><svg><use href="#i-sun"/></svg></div>
+        <h3>狗爪热敷</h3>
+        <p>温热狗爪热敷理疗，驱寒暖身，放松加倍。</p>
+        <div class="svc-foot"><span class="svc-tag">汪汪上门</span><span class="svc-price">¥98 起<small> · 60分钟</small></span></div>
+      </div>
     </div>
     <p class="svc-note"><svg><use href="#i-info"/></svg>具体时长与价格请与小狗当面确认，平台明码标价，无隐形消费。</p>
   </section>
@@ -1209,6 +1227,9 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
         <button class="chip" data-svc>肩颈放松</button>
         <button class="chip" data-svc>足底反射</button>
         <button class="chip" data-svc>小狗撒娇</button>
+        <button class="chip" data-svc>汪汪捶背</button>
+        <button class="chip" data-svc>撸狗解压</button>
+        <button class="chip" data-svc>狗爪热敷</button>
       </div>
       <label class="form-label">选择日期</label>
       <div class="chips" id="dayChips">
@@ -1380,7 +1401,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
   });
 
   /* 提交预约 → 假下单（模拟提交中 → 保存至 localStorage） */
-  var SVC_PRICE = {'中式推拿':'¥168 起','精油SPA':'¥198 起','肩颈放松':'¥128 起','足底反射':'¥158 起','小狗撒娇':'¥66 起'};
+  var SVC_PRICE = {'中式推拿':'¥168 起','精油SPA':'¥198 起','肩颈放松':'¥128 起','足底反射':'¥158 起','小狗撒娇':'¥66 起','汪汪捶背':'¥88 起','撸狗解压':'¥58 起','狗爪热敷':'¥98 起'};
   $('#btnSubmit').addEventListener('click', function(){
     var btn = this;
     if(btn.dataset.busy) return;
