@@ -484,7 +484,7 @@ img{display:block}
 .step h3{font-family:var(--sans);font-weight:700;font-size:16.5px;color:var(--text);letter-spacing:.04em}
 .step p{font-size:12.5px;color:var(--muted);margin-top:6px;line-height:1.65}
 
-/* ---------- 同城相似小狗 ---------- */
+/* ---------- 同城其他老技师 ---------- */
 .similar{padding:76px 0 8px}
 .sim-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .sim-card{
@@ -844,10 +844,6 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
             <img decoding="async" src="https://yh-l20.github.io/XiaoGouDaoJia/assets/photos/photo-polaroid.jpg" alt="小狗李弈昊的拍立得照片收藏">
             <span class="photo-cap">拍立得 · 生活收藏</span>
           </div>
-          <div class="photo-slide">
-            <img decoding="async" src="https://yh-l20.github.io/XiaoGouDaoJia/assets/photos/photo-gym.jpg" alt="小狗李弈昊健身身材照">
-            <span class="photo-cap">健身日常 · 保持状态</span>
-          </div>
         </div>
         <div class="photo-veil"></div>
         <span class="photo-badge-top"><i></i>新人 · 本月上新</span>
@@ -1085,17 +1081,17 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
     </div>
   </section>
 
-  <!-- ===== 同城相似小狗 ===== -->
+  <!-- ===== 同城其他老技师 ===== -->
   <section class="similar wrap" id="similar">
     <div class="section-head">
       <span class="eyebrow">Nearby</span>
-      <h2 class="section-title">同城 · 相似小狗推荐</h2>
-      <p class="sub">根据浏览偏好为你推荐附近口碑相近的小狗（演示数据）。</p>
+      <h2 class="section-title">同城 · 其他老技师推荐</h2>
+      <p class="sub">根据浏览偏好为你推荐附近口碑相近的老技师（演示数据）。</p>
     </div>
     <div class="sim-grid reveal">
       <a class="sim-card reveal" href="#similar">
         <div class="sim-photo">
-          <img decoding="async" src="https://yh-l20.github.io/XiaoGouDaoJia/assets/ai/zhou.jpg" alt="中式推拿小狗周师傅" loading="lazy">
+          <img decoding="async" src="https://yh-l20.github.io/XiaoGouDaoJia/assets/ai/zhou.jpg" alt="中式推拿老技师周师傅" loading="lazy">
           <span class="sim-tag">汪汪推拿</span>
         </div>
         <div class="sim-body">
@@ -1109,7 +1105,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </a>
       <a class="sim-card reveal" href="#similar">
         <div class="sim-photo">
-          <img decoding="async" src="https://yh-l20.github.io/XiaoGouDaoJia/assets/ai/ajie.jpg" alt="精油SPA小狗阿杰" loading="lazy">
+          <img decoding="async" src="https://yh-l20.github.io/XiaoGouDaoJia/assets/ai/ajie.jpg" alt="精油SPA老技师阿杰" loading="lazy">
           <span class="sim-tag">精油SPA</span>
         </div>
         <div class="sim-body">
@@ -1123,7 +1119,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </a>
       <a class="sim-card reveal" href="#similar">
         <div class="sim-photo">
-          <img decoding="async" src="https://yh-l20.github.io/XiaoGouDaoJia/assets/ai/xiaoyu.jpg" alt="肩颈理疗小狗小雨" loading="lazy">
+          <img decoding="async" src="https://yh-l20.github.io/XiaoGouDaoJia/assets/ai/xiaoyu.jpg" alt="肩颈理疗老技师小雨" loading="lazy">
           <span class="sim-tag">肩颈理疗</span>
         </div>
         <div class="sim-body">
@@ -1348,9 +1344,9 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
     var el = document.getElementById('similar');
     if(el){
       el.scrollIntoView({behavior:'smooth', block:'start'});
-      showToast('已为你推荐同城相似小狗');
+      showToast('已为你推荐同城其他老技师');
     } else {
-      showToast('演示功能：相似小狗推荐列表敬请期待');
+      showToast('演示功能：其他老技师推荐列表敬请期待');
     }
   });
 
@@ -1720,13 +1716,13 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
   if(mOrders) mOrders.addEventListener('click', openOrders);
   $$('[data-close-orders]').forEach(function(el){ el.addEventListener('click', closeOrders); });
   updateBadge();
-  /* 相似小狗卡点击提示 */
+  /* 其他老技师卡点击提示 */
   $$('.sim-card').forEach(function(card){
     card.addEventListener('click', function(e){
       e.preventDefault();
       var nm = card.querySelector('.sim-name');
-      var who = nm ? nm.textContent.trim().split(/\s+/)[0] : '该小狗';
-      showToast('演示功能：' + who + ' 的小狗主页敬请期待');
+      var who = nm ? nm.textContent.trim().split(/\s+/)[0] : '该老技师';
+      showToast('演示功能：' + who + ' 的技师主页敬请期待');
     });
   });
 
